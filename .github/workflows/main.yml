@@ -24,8 +24,8 @@ jobs:
           NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
         run: |
-          .\ngrok authtoken $env:NGROK_AUTH_TOKEN
-          .\ngrok tcp $env:NGROK_PORT --region=in &
+          ngrok authtoken $env:NGROK_AUTH_TOKEN
+          ngrok tcp $env:NGROK_PORT --region=in &
           
       - name: Time
         run: sleep 21000

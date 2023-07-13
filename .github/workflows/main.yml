@@ -1,0 +1,23 @@
+name: Windows Workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install File
+        run: powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/Gks908/WorkMode/main/download.bat -OutFile download.bat"
+      - name: Set up
+        run: cmd/c download.bat
+      - name: Start
+        run: cmd/c start.bat
+      - name: Time
+        run: sleep 19000
+

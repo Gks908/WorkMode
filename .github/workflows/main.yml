@@ -13,11 +13,10 @@ jobs:
       - name: Install
         env:
           NGROK_LINK: ${{ secrets.NGROK_LINK }}
-          NGROK_EXTRACT: ${{ secrets.NGROK_EXTRACT }}
+         
         run: |
-          curl -O $env:NGROK_LINK
-          Expand-Archive -Path $env:NGROK_EXTRACT
- 
+          $env:NGROK_LINK
+           
 
       - name: Set up
         env:

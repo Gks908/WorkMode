@@ -31,7 +31,7 @@ jobs:
           NGROK_PASS: ${{ secrets.NGROK_PASS }}
         run: |
           
-          net $env:NGROK_PASS
+          net user runneradmin $env:NGROK_PASS
           
       - name: Set up run
         env:

@@ -25,14 +25,7 @@ jobs:
         run: |
           ngrok authtoken $env:NGROK_AUTH_TOKEN
           
-      - name: ChangePas
-        env:
-          
-          NGROK_PASS: ${{ secrets.NGROK_PASS }}
-        run: |
-          
-          net user runneradmin $env:NGROK_PASS
-          
+      
       - name: Set up run
         env:
           

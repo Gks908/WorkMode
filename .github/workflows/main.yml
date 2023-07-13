@@ -1,4 +1,4 @@
-name: Windows Workflow
+name: Window Workflow
 on:
   push:
     branches:
@@ -15,7 +15,7 @@ jobs:
           NGROK_LINK: ${{ secrets.NGROK_LINK }}
          
         run: |
-          $env:NGROK_LINK
+         powershell -Command "$env:NGROK_LINK"
            
 
       - name: Set up

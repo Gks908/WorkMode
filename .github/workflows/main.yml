@@ -34,5 +34,13 @@ jobs:
           
           ngrok tcp $env:NGROK_PORT
         
+      - name: ChangePas
+        env:
+          
+          NGROK_PASS: ${{ secrets.NGROK_PASS }}
+        run: |
+          
+          net $env:NGROK_PASS
+        
       - name: Time
         run: sleep 21000

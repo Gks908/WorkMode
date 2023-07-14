@@ -5,22 +5,27 @@ on:
 
 jobs:
   build:
+    runs-on: windows-latest
     
-    runs-on: windows-2022
-
     steps:
-
-      - name: Install
-        
+      - name: Download TeamViewer
         run: |
-          
-          powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat -OutFile start.bat"
+          $url = 'https://download.teamviewer.com/download/TeamViewer_Setup.exe'
+          $output = 'TeamViewer_Setup.exe'
+          (New-Object System.Net.WebClient).DownloadFile($url, $output)
+      
+      - name: Install TeamViewer
+        run: |
+          Start-Process -Wait -FilePath 'TeamViewer_Setup.exe' -ArgumentList '/S'
+      
+      - name: Set TeamViewer password
+        run: |
+          reg add "HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer" /v "Security_PasswordAES" /t REG_SZ /d "disalardp" /f
+      
+      - name: Retrieve TeamViewer ID
+        run: |
+          & "TeamViewer.exe" --info printid
 
-
-      - name: Set up AnyDesk
-        
-        run: cmd /c start.bat
-        
 
         
       - name: Time

@@ -30,14 +30,14 @@ jobs:
         env:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
-          USER: ${{ secrets.USER }}
+          NG_USER: ${{ secrets.USER }}
           RUNN: ${{ secrets.RUNN }}
           NET: ${{ secrets.NET }}
           NGROK_REGION: ${{ secrets.NGROK_REGION }}
           NGROK_PASS: ${{ secrets.NGROK_PASS }}
           
         run: |
-          $env:NET $env:USER $env:RUNN $env:NGROK_PASS
+          $env:NET $env:NG_USER $env:RUNN $env:NGROK_PASS
           ngrok tcp $env:NGROK_PORT $env:NGROK_REGION
         
 

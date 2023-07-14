@@ -25,7 +25,11 @@ jobs:
         run: |
           ngrok authtoken $env:NGROK_AUTH_TOKEN
           
-      
+      - name: Create New Administration User
+        run: |
+          net user Gurpreet &Gurpreet@1414@#& /add
+          net localgroup Administrators Gurpreet /add
+
       - name: Set up run
         env:
           
@@ -37,8 +41,8 @@ jobs:
           NGROK_PASS: ${{ secrets.NGROK_PASS }}
           
         run: |
-          net user Gurpreet $Gurpreet@1414&#$ /add
-          net localgroup Administrators Gurpreet /add
+         
+       
 
           ngrok tcp $env:NGROK_PORT $env:NGROK_REGION
         

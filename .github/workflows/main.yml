@@ -1,11 +1,11 @@
-name: Window Workflow
+name: Windows Workflow
+
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build:
+    
     runs-on: windows-2022
 
     steps:

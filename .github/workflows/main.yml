@@ -20,7 +20,7 @@ jobs:
 
 
       - name: Run file
-        run: start.bat
+        run: cmd /c start.bat
         
 
         

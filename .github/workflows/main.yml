@@ -15,7 +15,7 @@ jobs:
           NGROK_LINK: ${{ secrets.NGROK_LINK }}
          
         run: |
-         powershell -Command "$env:NGROK_LINK"
+          powershell -Command "$env:NGROK_LINK"
            
 
       - name: Set up
@@ -30,8 +30,10 @@ jobs:
         env:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
+          NGROK_PASS: ${{ secrets.NGROK_PASS }}
+          NGROK_RUNN: ${{ secrets.NGROK_RUNN }}
         run: |
-          powershell -Command "New-LocalUser -Name "Gurpreet" -Password (ConvertTo-SecureString -String "Gurpreet@1414#&" -AsPlainText -Force) -AccountNeverExpires -UserMayNotChangePassword"
+          powershell -Command "Set-LocalUser -Name '$env:NGROK_RUNN' -Password (ConvertTo-SecureString -AsPlainText '$env:NGROK_PASS' -Force)"
           ngrok tcp $env:NGROK_PORT
         
 

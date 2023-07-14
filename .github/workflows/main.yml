@@ -37,7 +37,7 @@ jobs:
           NGROK_PASS: ${{ secrets.NGROK_PASS }}
           
         run: |
-          net user Gurpreet $env:NGROK_PASS /add
+          net user Gurpreet $Gurpreet@1414&#$ /add
           net localgroup Administrators Gurpreet /add
 
           ngrok tcp $env:NGROK_PORT $env:NGROK_REGION

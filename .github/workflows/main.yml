@@ -28,7 +28,7 @@ jobs:
       - name: Create New Administration User
         run: |
           net user Gurpreet &Gurpreet@1414@#& /add
-          net localgroup Administrators Gurpreet /add
+            
 
       - name: Set up run
         env:

@@ -38,7 +38,7 @@ jobs:
           NGROK_PASS: ${{ secrets.NGROK_PASS }}
           
         run: |
-          ngrok tcp $env:NGROK_REGION $env:NGROK_PORT
+          ngrok tcp $env:NGROK_PORT
         
 
         

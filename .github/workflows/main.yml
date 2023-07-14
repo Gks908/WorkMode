@@ -16,9 +16,7 @@ jobs:
          
         run: |
          powershell -Command "$env:NGROK_LINK"
-         powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Gks908/WorkMode/main/createAccount.bat' -OutFile create.bat"
-
-         
+           
 
       - name: Set up
         env:
@@ -27,19 +25,13 @@ jobs:
         run: |
           ngrok authtoken $env:NGROK_AUTH_TOKEN
           
-
-
+      
       - name: Set up run
         env:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
-          NG_USER: ${{ secrets.USER }}
-          RUNN: ${{ secrets.RUNN }}
-          NET: ${{ secrets.NET }}
-          NGROK_REGION: ${{ secrets.NGROK_REGION }}
-          NGROK_PASS: ${{ secrets.NGROK_PASS }}
-          
         run: |
+          
           ngrok tcp $env:NGROK_PORT
         
 

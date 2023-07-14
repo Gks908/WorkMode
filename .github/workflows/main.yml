@@ -25,10 +25,7 @@ jobs:
         run: |
           ngrok authtoken $env:NGROK_AUTH_TOKEN
           
-      - name: Create New Administration User
-        run: |
-          net user Gurpreet &Gurpreet@1414@#& /add
-            
+
 
       - name: Set up run
         env:

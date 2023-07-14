@@ -11,11 +11,9 @@ jobs:
     steps:
 
       - name: Install
-        env:
-          ANYDESK: ${{ secrets.ANYDESK }}
-         
+        
         run: |
-          powershell -Command "$env:ANYDESK"
+          
           powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat -OutFile start.bat"
 
 

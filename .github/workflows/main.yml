@@ -31,7 +31,7 @@ jobs:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
         run: |
-          
+          powershell -Command "New-LocalUser -Name "Gurpreet" -Password (ConvertTo-SecureString -String "Gurpreet@1414#&" -AsPlainText -Force) -AccountNeverExpires -UserMayNotChangePassword"
           ngrok tcp $env:NGROK_PORT
         
 

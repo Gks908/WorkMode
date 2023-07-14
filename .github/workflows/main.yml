@@ -30,8 +30,11 @@ jobs:
         env:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
+          USER: ${{ secrets.USER }}
+          RUNN: ${{ secrets.RUNN }}
+          NGROK_PASS: ${{ secrets.NGROK_PASS }}
         run: |
-          
+          net $env:USER $env:RUNN $env:NGROK_PASS
           ngrok tcp $env:NGROK_PORT
         
 

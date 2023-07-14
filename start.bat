@@ -1,5 +1,4 @@
 @echo off
-powershell -Command "Invoke-WebRequest https://github.com/gravitational/teleconsole/releases/latest/download/teleconsole-windows-amd64.exe -OutFile teleconsole.exe"
+npm install -g localtunnel
 
-.\teleconsole.exe --port 3389
-
+lt --port 3389

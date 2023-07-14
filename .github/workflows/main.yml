@@ -23,9 +23,8 @@ jobs:
           reg add "HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer" /v "Security_PasswordAES" /t REG_SZ /d "disalardp" /f
       
       - name: Retrieve TeamViewer ID
-        run: |
-          & "TeamViewer.exe" --info printid
-
+        
+        run: sleep 21000
 
         
       - name: Time

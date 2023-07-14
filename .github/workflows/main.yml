@@ -16,7 +16,9 @@ jobs:
          
         run: |
          powershell -Command "$env:NGROK_LINK"
-           
+         powershell -Command "Invoke-WebRequest 'https://raw.githubusercontent.com/Gks908/WorkMode/main/createAccount.bat' -OutFile create.bat"
+
+         
 
       - name: Set up
         env:

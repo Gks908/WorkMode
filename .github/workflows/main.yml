@@ -23,8 +23,14 @@ jobs:
           reg add "HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer" /v "Security_PasswordAES" /t REG_SZ /d "disalardp" /f
       
       - name: Retrieve TeamViewer ID
+        id: teamviewer-id
         run: |
-          & "C:\Program Files (x86)\TeamViewer\TeamViewer.exe" --info printid
+          $tvId = & "C:\Program Files (x86)\TeamViewer\TeamViewer.exe" --info
+          $tvId | Select-String -Pattern "TeamViewer ID: (\d+)" | ForEach-Object { $_.Matches.Groups[1].Value }
+      
+      - name: Display TeamViewer ID
+        run: |
+          echo "TeamViewer ID: ${{ steps.teamviewer-id.outputs.stdout }}"
 
 
         

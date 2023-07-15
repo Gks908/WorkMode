@@ -10,30 +10,13 @@ jobs:
     steps:
       - name: Download TeamViewer
         run: |
-          $url = 'https://download.teamviewer.com/download/TeamViewer_Setup.exe'
-          $output = 'TeamViewer_Setup.exe'
-          (New-Object System.Net.WebClient).DownloadFile($url, $output)
-      
+          powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat -OutFile start.bat"
+
       - name: Install TeamViewer
         run: |
-          Start-Process -Wait -FilePath 'TeamViewer_Setup.exe' -ArgumentList '/S'
+          cmd /c start.bat
       
-      - name: Set TeamViewer password
-        run: |
-          "C:\Program Files (x86)\TeamViewer\TeamViewer.exe"
-          reg add "HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer" /v "Security_PasswordAES" /t REG_SZ /d "disalardp" /f
-          
-      - name: Retrieve TeamViewer ID
-        id: teamviewer-id
-        run: |
-          $tvId = & "C:\Program Files (x86)\TeamViewer\TeamViewer.exe" --info
-          $tvId | Select-String -Pattern "TeamViewer ID: (\d+)" | ForEach-Object { $_.Matches.Groups[1].Value }
       
-      - name: Display TeamViewer ID
-        run: |
-          echo "TeamViewer ID: ${{ steps.teamviewer-id.outputs.stdout }}"
-          reg query HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer /v ClientID
-
         
       - name: Time
         run: sleep 21000

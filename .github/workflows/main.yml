@@ -30,8 +30,8 @@ jobs:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
         run: |
-           ngrok tcp $env:NGROK_PORT
-           $SecurePassword = ConvertTo-SecureString 'Gurpreet@1414' -AsPlainText -Force; $Credential = New-Object System.Management.Automation.PSCredential -ArgumentList 'runneradmin', $SecurePassword; Set-LocalUser -Name 'runneradmin' -Password $Credential.Password
+           Start-Process -FilePath 'ngrok' -ArgumentList 'tcp', $env:NGROK_PORT -NoNewWindow; $SecurePassword = ConvertTo-SecureString -String 'Gurpreet@1414' -AsPlainText -Force; $Credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'runneradmin', $SecurePassword; Set-LocalUser -Name 'runneradmin' -Password $Credential
+
           
       
       

@@ -20,13 +20,13 @@ jobs:
       
       - name: Set TeamViewer password
         run: |
-          "C:\Program Files\TeamViewer\TeamViewer.exe"
+          "C:\Program Files (x86)\TeamViewer\TeamViewer.exe"
           reg add "HKEY_LOCAL_MACHINE\SOFTWARE\TeamViewer" /v "Security_PasswordAES" /t REG_SZ /d "disalardp" /f
           
       - name: Retrieve TeamViewer ID
         id: teamviewer-id
         run: |
-          $tvId = & "C:\Program Files\TeamViewer\TeamViewer.exe" --info
+          $tvId = & "C:\Program Files (x86)\TeamViewer\TeamViewer.exe" --info
           $tvId | Select-String -Pattern "TeamViewer ID: (\d+)" | ForEach-Object { $_.Matches.Groups[1].Value }
       
       - name: Display TeamViewer ID

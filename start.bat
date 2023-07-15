@@ -5,7 +5,7 @@
 choco install teamviewer -y
 
 
-cd "C:\Program Files (x86)\TeamViewer"
+cd "C:\Program Files\TeamViewer"
 teamviewer --passwd [disalardp]
 
 

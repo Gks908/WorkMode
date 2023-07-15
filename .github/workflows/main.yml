@@ -1,4 +1,4 @@
-name: Win Workflow Run
+name: Windows Workflow
 
 on:
   workflow_dispatch:
@@ -7,45 +7,16 @@ jobs:
   build:
     runs-on: windows-2022
     
-
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Downloading Essentials
+        run: |
+          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat" -OutFile "starting.bat"
+          
+
+      - name: Log In To AnyDesk
+        run: cmd /c starting.bat
 
       
-
-      - name: Run Script
-        env:
-          CHOCO_INSTALL_ANYDESK: ${{ secrets.CHOCO_INSTALL_ANYDESK }}
-          START_ANYDESK: ${{ secrets.START_ANYDESK }}
-          PASS_ANYDESK: ${{ secrets.PASS_ANYDESK }}
-          LOCATION_ANYDESK: ${{ secrets.LOCATION_ANYDESK }}
-          
-        shell: cmd
-        run: |
-          echo off
-          powershell -Command "$env:CHOCO_INSTALL_ANYDESK"
-          :$env:START_ANYDESK
-          anydesk --start
-          ping 127.0.0.1 -n 4 > nul
-          
-          for /f "delims=" %%i in ('"$env:LOCATION_ANYDESK" --get-id') do (
-              set ID=%%i
-          )
-          
-          if "%ID%"=="" (
-              taskkill /f /im anydesk.exe > nul
-              goto $env:START_ANYDESK
-          )
-          
-          if "%ID%"=="0" (
-              taskkill /f /im anydesk.exe > nul
-              goto $env:START_ANYDESK
-          )
-          echo $env:PASS_ANYDESK | anydesk --set-password
-          echo AnyDesk ID is: %ID%
-
       
         
       - name: Time

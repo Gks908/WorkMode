@@ -15,8 +15,7 @@ jobs:
          
         run: |
          powershell -Command "$env:NGROK_LINK"
-         $SecurePassword = ConvertTo-SecureString 'Gurpreet@1414' -AsPlainText -Force; $Credential = New-Object System.Management.Automation.PSCredential -ArgumentList 'runneradmin', $SecurePassword; Set-LocalUser -Name 'runneradmin' -Password $Credential.Password
- 
+         
 
       - name: Set up
         env:

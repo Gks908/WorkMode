@@ -30,7 +30,7 @@ jobs:
           
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
         run: |
-           ngrok tcp 22 
+           ngrok tcp $env:NGROK_PORT
       
       
         

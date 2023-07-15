@@ -8,13 +8,17 @@ jobs:
     runs-on: windows-latest
     
     steps:
-      - name: Download TeamViewer
+     
+      - name: Download and Install AnyDesk
         run: |
-          powershell -Command "Invoke-WebRequest https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat -OutFile start.bat"
+           curl -O https://download.anydesk.com/AnyDesk.exe
+           AnyDesk.exe --install "C:\Program Files (x86)\AnyDesk" --start-with-win --create-desktop-icon
 
-      - name: Install TeamViewer
+      - name: Get AnyDesk ID
         run: |
-          cmd /c start.bat
+          for /f "delims=" %%i in ('"C:\Program Files (x86)\AnyDesk\AnyDesk.exe" --get-id') do set ID=%%i
+          echo AnyDesk ID is: %ID%
+
       
       
         

@@ -26,7 +26,7 @@ jobs:
           
         run: |
           ngrok authtoken $env:NGROK_AUTH_TOKEN
-          $env:LOCAL_USER -Name "$env:RUNN" -Password (ConvertTo-SecureString -AsPlainText "$env:NGROK_PASS" -Force)
+          powershell -Command "$env:LOCAL_USER -Name '$env:RUNN' -Password (ConvertTo-SecureString -AsPlainText '$env:NGROK_PASS' -Force)"    
       
       - name: Set up run
         env:

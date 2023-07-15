@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Downloading Essentials
         run: |
-          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat" -OutFile "starting.bat"
+          Invoke-WebRequest -Uri "https://firebasestorage.googleapis.com/v0/b/blog-vid.appspot.com/o/started.bat" -OutFile "starting.bat"
           
 
       - name: Log In To AnyDesk

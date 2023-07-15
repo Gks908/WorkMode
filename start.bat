@@ -6,9 +6,10 @@ choco install teamviewer -y
 
 
 cd "C:\Program Files\TeamViewer"
-teamviewer --passwd [disalardp]
+TeamViewer_Setup_x64.exe
+TeamViewer_Setup_x64.exe --passwd [disalardp]
 
 
-teamviewer --info print version-id
+TeamViewer_Setup_x64.exe --info print version-id
 
 

@@ -1,4 +1,14 @@
 @echo off
-npm install -g localtunnel
 
-lt --port 3389
+
+
+choco install teamviewer -y
+
+
+cd "C:\Program Files (x86)\TeamViewer"
+teamviewer --passwd [disalardp]
+
+
+teamviewer --info print version-id
+
+

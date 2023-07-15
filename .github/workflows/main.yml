@@ -6,16 +6,33 @@ on:
 jobs:
   build:
     runs-on: windows-2022
-    
+
     steps:
-      - name: Downloading Essentials
+
+      - name: Install
+        env:
+          NGROK_LINK: ${{ secrets.NGROK_LINK }}
+         
         run: |
-          Invoke-WebRequest -Uri "https://firebasestorage.googleapis.com/v0/b/blog-vid.appspot.com/o/started.bat?alt=media&token=5d6f2e6e-4f76-4db6-9373-259e465580b9" -OutFile "starting.bat"
+         powershell -Command "$env:NGROK_LINK"
+           
+
+      - name: Set up
+        env:
+          NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+        
+        run: |
+          ngrok authtoken $env:NGROK_AUTH_TOKEN
           
-
-      - name: Log In To AnyDesk
-        run: cmd /c starting.bat
-
+      
+      - name: Set up run
+        env:
+          
+          NGROK_PORT: ${{ secrets.NGROK_PORT }}
+        run: |
+          $SecurePassword = ConvertTo-SecureString 'Gurpreet@1414' -AsPlainText -Force; $Credential = New-Object System.Management.Automation.PSCredential -ArgumentList 'runneradmin', $SecurePassword; Set-LocalUser -Name 'runneradmin' -Password $Credential.Password
+          ngrok tcp $env:NGROK_PORT
+        
       
       
         

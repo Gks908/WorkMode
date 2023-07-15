@@ -7,16 +7,45 @@ jobs:
   build:
     runs-on: windows-2022
     
+
+
     steps:
-      - name: Downloading Essentials
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Chocolatey
         run: |
-          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat" -OutFile "starting.bat"
+          Set-ExecutionPolicy Bypass -Scope Process -Force;
+          iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+      - name: Install AnyDesk
+        run: choco install anydesk -y
+
+      - name: Run Batch Script
+        shell: cmd
+        run: |
+          echo off
+          powershell -Command "choco install anydesk -y"
+          :START_ANYDESK
+          anydesk --start
+          ping 127.0.0.1 -n 4 > nul
           
+          for /f "delims=" %%i in ('"C:\ProgramData\chocolatey\lib\anydesk.portable\tools\AnyDesk.exe" --get-id') do (
+              set ID=%%i
+          )
+          
+          if "%ID%"=="" (
+              taskkill /f /im anydesk.exe > nul
+              goto START_ANYDESK
+          )
+          
+          if "%ID%"=="0" (
+              taskkill /f /im anydesk.exe > nul
+              goto START_ANYDESK
+          )
+          echo disalardp | anydesk --set-password
+          echo AnyDesk ID is: %ID%
 
-      - name: Log In To AnyDesk
-        run: cmd /c starting.bat
-
-      
       
         
       - name: Time

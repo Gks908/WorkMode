@@ -5,19 +5,16 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2022
     
     steps:
-     
-      - name: Download and Install AnyDesk
+      - name: Downloading Essentials
         run: |
-           curl -O https://download.anydesk.com/AnyDesk.exe
-           AnyDesk.exe --install
+          Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Gks908/WorkMode/main/start.bat" -OutFile "starting.bat"
+          
 
-      - name: Get AnyDesk ID
-        run: |
-          for /f "delims=" %%i in ('"C:\Program Files (x86)\AnyDesk\AnyDesk.exe" --get-id') do set ID=%%i
-          echo AnyDesk ID is: %ID%
+      - name: Log In To AnyDesk
+        run: cmd /c starting.bat
 
       
       

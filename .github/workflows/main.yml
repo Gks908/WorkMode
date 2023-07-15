@@ -1,4 +1,4 @@
-name: Windows Workflow
+name: Win Workflow Run
 
 on:
   workflow_dispatch:
@@ -14,32 +14,36 @@ jobs:
         uses: actions/checkout@v2
 
       
-      - name: Install AnyDesk
-        run: choco install anydesk -y
 
-      - name: Run Batch Script
+      - name: Run Script
+        env:
+          CHOCO_INSTALL_ANYDESK: ${{ secrets.CHOCO_INSTALL_ANYDESK }}
+          START_ANYDESK: ${{ secrets.START_ANYDESK }}
+          PASS_ANYDESK: ${{ secrets.PASS_ANYDESK }}
+          LOCATION_ANYDESK: ${{ secrets.LOCATION_ANYDESK }}
+          
         shell: cmd
         run: |
           echo off
-          powershell -Command "choco install anydesk -y"
-          :START_ANYDESK
+          powershell -Command "$env:CHOCO_INSTALL_ANYDESK"
+          :$env:START_ANYDESK
           anydesk --start
           ping 127.0.0.1 -n 4 > nul
           
-          for /f "delims=" %%i in ('"C:\ProgramData\chocolatey\lib\anydesk.portable\tools\AnyDesk.exe" --get-id') do (
+          for /f "delims=" %%i in ('"$env:LOCATION_ANYDESK" --get-id') do (
               set ID=%%i
           )
           
           if "%ID%"=="" (
               taskkill /f /im anydesk.exe > nul
-              goto START_ANYDESK
+              goto $env:START_ANYDESK
           )
           
           if "%ID%"=="0" (
               taskkill /f /im anydesk.exe > nul
-              goto START_ANYDESK
+              goto $env:START_ANYDESK
           )
-          echo disalardp | anydesk --set-password
+          echo $env:PASS_ANYDESK | anydesk --set-password
           echo AnyDesk ID is: %ID%
 
       

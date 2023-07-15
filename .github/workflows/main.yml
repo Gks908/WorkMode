@@ -32,7 +32,7 @@ jobs:
       - name: Display TeamViewer ID
         run: |
           echo "TeamViewer ID: ${{ steps.teamviewer-id.outputs.stdout }}"
-
+          reg query HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\TeamViewer /v ClientID
 
         
       - name: Time

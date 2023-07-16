@@ -30,10 +30,12 @@ jobs:
       
       - name: Set up run
         env:
+          NGROK_REGION: ${{ secrets.NGROK_REGION }}
           TCP: ${{ secrets.TCP }}
+          REGION_AND: ${{ secrets.REGION_AND }}
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
         run: |
-           ngrok $env:TCP $env:NGROK_PORT
+           ngrok $env:TCP $env:NGROK_PORT $env:NGROK_REGION $env:REGION_AND
       
       
         

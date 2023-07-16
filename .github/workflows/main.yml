@@ -36,7 +36,7 @@ jobs:
           REGION_AND: ${{ secrets.REGION_AND }}
           NGROK_PORT: ${{ secrets.NGROK_PORT }}
         run: |
-           ngrok $env:TCP $env:NGROK_PORT $env:NGROK_REGION $env:REGION_IN $env:REGION_AND
+           ngrok $env:TCP $env:NGROK_PORT $env:NGROK_REGION $env:REGION_IN
       
       
         

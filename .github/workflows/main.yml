@@ -13,9 +13,13 @@ jobs:
         run: |
           choco install -y nomachine
 
-      - name: Start Machine
-        run: nxserver --start
+      - name: Start NoMachine
+        run: |
+         "C:\Program Files\NoMachine\nxserver" --start
+
 
       - name: Start
-        run: nxscreen --start
+        run: |
+         "C:\Program Files\NoMachine\nxscreen" --start
+        
 

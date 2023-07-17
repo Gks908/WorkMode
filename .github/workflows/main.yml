@@ -15,11 +15,11 @@ jobs:
 
       - name: Start NoMachine
         run: |
-         "C:\Program Files\NoMachine\nxserver" --start
+          cmd.exe /C "C:\Program Files\NoMachine\nxserver --start"
 
 
       - name: Start
         run: |
-         "C:\Program Files\NoMachine\nxscreen" --start
-        
+          cmd.exe /C "C:\Program Files\NoMachine\nxscreen --start"
+
 

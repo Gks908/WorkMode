@@ -1,0 +1,21 @@
+name: Windows Workflow
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Set up Machine
+        run: |
+          choco install -y nomachine
+
+      - name: Start Machine
+        run: nxserver --start
+
+      - name: Start
+        run: nxscreen --start
+
